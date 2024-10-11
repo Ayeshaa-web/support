@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Login Page</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(to right, #D2B68A, #0056b3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+        }
+
+        h2 {
+            text-align: center;
+            color: #222D52; 
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input:focus {
+            border-color: #ADD8E6; 
+            outline: none;
+        }
+
+        .btn {
+            background-color:#ADD8E6;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .btn:active {
+            background-color:#ADD8E6;
+        }
+
+        /* Loading animation */
+        .loading {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 4px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 4px solid #ffcc00;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        
+        .error-message {
+            color: red;
+            font-size: 14px;
+            display: none;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+            </div>
+
+            <button type="submit" class="btn" id="loginBtn">Login</button>
+            <div class="loading" id="loadingSpinner"></div>
+            <div class="error-message" id="errorMessage">Invalid email or password.</div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Show the loading spinner
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            loadingSpinner.style.display = 'block';
+
+            // Simulate a login process (e.g., server-side validation)
+            setTimeout(function() {
+                // Hide the loading spinner
+                loadingSpinner.style.display = 'none';
+
+                // Check if the email and password are valid
+                if (email === "test@example.com" && password === "password") {
+                    alert("Login successful!");
+                    // You can redirect to another page or perform any action
+                } else {
+                    // Show error message if credentials are invalid
+                    document.getElementById('errorMessage').style.display = 'block';
+                }
+            }, 2000); // Simulate a delay for interaction (e.g., 2 seconds)
+        });
+    </script>
+
+</body>
+</html>
